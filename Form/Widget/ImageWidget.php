@@ -42,7 +42,7 @@ class ImageWidget extends AbstractType implements ContainerAwareInterface
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Darom\Bundle\CoreBundle\Entity\Image',
+            'data_class' => $this->container->getParameter('akuma_media.image_class'),
             'csrf_protection' => true,
             'csrf_field_name' => '_token',
             'intention' => 'file',
