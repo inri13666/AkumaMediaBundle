@@ -1,0 +1,24 @@
+{% block image_widget_row %}
+    {{ form_errors(form) }}
+    {{ form_label(form) }}
+    {{ form_widget(form, {'label':false, 'attr': {'novalidate': 'novalidate' }}) }}
+{% endblock %}
+{% block image_widget_label %}
+{% endblock %}
+{% block image_widget_widget %}
+    {% if form.vars.value is not null %}
+        {% spaceless %}
+        <span {{ block('widget_container_attributes') }} class="btn btn-default">
+            <span class="image">
+                <img src="{{ image_url(form.vars.value) }}">
+            </span>
+            {{ block('form_rows') }}
+            <span class="">
+                {% if (form.parent is defined) and (form.parent.vars.allow_delete) %}
+                    <i class="glyphicon glyphicon-remove-circle remove-image" onclick="document.getElementById('{{ form.vars.id }}').remove()"></i>
+                {% endif %}
+            </span>
+        </span>
+        {% endspaceless %}
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,27 @@
+services:
+#    akuma_media.example:
+#        class: Akuma\Bundle\MediaBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
+services:
+    akuma_media.twig.functions:
+            class: Akuma\Bundle\MediaBundle\Twig\Functions
+            arguments: []
+            calls:
+                - [setContainer, ["@service_container"]]
+            tags:
+                - { name: twig.extension }
+
+    akuma_media.twig.filters:
+            class: Akuma\Bundle\MediaBundle\Twig\Filters
+            arguments: []
+            calls:
+                - [setContainer, ["@service_container"]]
+            tags:
+                - { name: twig.extension }
+
+    akuma_media.form.type.image_widget:
+        class: Akuma\Bundle\MediaBundle\Form\Widget\ImageWidget
+        calls:
+            - [setContainer, ["@service_container"]]
+        tags:
+            - { name: form.type, alias: image_widget }
